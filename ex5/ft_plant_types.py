@@ -1,11 +1,43 @@
 class Plant:
     def __init__(self, name: str, height: float, age: int) -> None:
         self._name: str = name
-        self._height: float = height
-        self._age: int = age
+        self._height: float = 0.0
+        self._age: int = 0
+
+        if height < 0:
+            print(f"{self._name}: Error, height can't be negative")
+        else:
+            self._height = height
+
+        if age < 0:
+            print(f"{self._name}: Error, age can't be negative")
+        else:
+            self._age = age
 
     def show(self) -> None:
         print(f"{self._name}: {self._height}cm, {self._age} days old")
+
+    def get_height(self) -> float:
+        return self._height
+
+    def get_age(self) -> int:
+        return self._age
+
+    def set_height(self, height: float) -> None:
+        if height < 0:
+            print(f"{self._name}: Error, height can't be negative")
+            print("Height update rejected")
+        else:
+            self._height = height
+            print(f"Height updated: {self._height}cm")
+
+    def set_age(self, age: int) -> None:
+        if age < 0:
+            print(f"{self._name}: Error, age can't be negative")
+            print("Age update rejected")
+        else:
+            self._age = age
+            print(f"Age updated: {self._age} days")
 
     def grow(self, amount: float = 0.8) -> None:
         self._height += amount
@@ -15,9 +47,7 @@ class Plant:
 
 
 class Flower(Plant):
-    def __init__(
-        self, name: str, height: float, age: int, color: str
-    ) -> None:
+    def __init__(self, name: str, height: float, age: int, color: str) -> None:
         super().__init__(name, height, age)
         self.color: str = color
         self.is_bloomed: bool = False
@@ -27,11 +57,11 @@ class Flower(Plant):
 
     def show(self) -> None:
         super().show()
-        print(f"Color: {self.color}")
+        print(f" Color: {self.color}")
         if self.is_bloomed:
-            print(f"{self._name} is blooming beautifully!")
+            print(f" {self._name} is blooming beautifully!")
         else:
-            print(f"{self._name} has not bloomed yet")
+            print(f" {self._name} has not bloomed yet")
 
 
 class Tree(Plant):
@@ -49,7 +79,7 @@ class Tree(Plant):
 
     def show(self) -> None:
         super().show()
-        print(f"Trunk diameter: {self.trunk_diameter}cm")
+        print(f" Trunk diameter: {self.trunk_diameter}cm")
 
 
 class Vegetable(Plant):
@@ -75,8 +105,8 @@ class Vegetable(Plant):
 
     def show(self) -> None:
         super().show()
-        print(f"Harvest season: {self.harvest_season}")
-        print(f"Nutritional value: {round(self.nutritional_value)}")
+        print(f" Harvest season: {self.harvest_season}")
+        print(f" Nutritional value: {round(self.nutritional_value)}")
 
 
 def ft_plant_types() -> None:
